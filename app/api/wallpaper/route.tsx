@@ -96,11 +96,16 @@ export async function GET(request: Request) {
           fontFamily: "Arial",
         }}
       >
-        <div style={{ fontSize: 46, marginBottom: 90 }}>
-          <span>{weather.city} · </span>
-          <span style={{ color: "#ff6b3d", fontWeight: 700 }}>{weather.temp}</span>
-          <span> · {weather.feels}</span>
-        </div>
+        <div
+  style={{
+    fontSize: 46,
+    marginBottom: 90,
+    color: "#ffffff",
+    display: "flex",
+  }}
+>
+  {weather.city} · {weather.temp} · {weather.feels}
+</div>
 
         <div style={{ display: "flex", flexWrap: "wrap", width: 980, gap: 42, justifyContent: "center", marginBottom: 90 }}>
           {months.slice(0, currentMonth).map((_, index) => (
