@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import quotes from "../../../../data/quotes.json";
+const quotes = ["Когда тяжело — вспомни, ради кого ты стараешься."];
 
 export const runtime = "edge";
 
