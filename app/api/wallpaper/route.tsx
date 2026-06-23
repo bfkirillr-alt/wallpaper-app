@@ -102,26 +102,26 @@ export async function GET(request: Request) {
         <div
           style={{
             position: "absolute",
-            left: 330,
-            top: 118,
-            width: 520,
-            height: 105,
+            left: 390,
+            top: 18,
+            width: 400,
+            height: 115,
             borderRadius: 999,
             background:
-              "radial-gradient(ellipse at center, rgba(255,107,61,0.10) 0%, rgba(255,107,61,0.055) 38%, rgba(255,107,61,0.018) 66%, transparent 86%)",
+              "radial-gradient(ellipse at center, rgba(255,107,61,0.055) 0%, rgba(255,107,61,0.028) 42%, rgba(255,107,61,0.010) 68%, transparent 88%)",
           }}
         />
 
         <div
           style={{
             position: "absolute",
-            left: 410,
-            top: 134,
-            width: 360,
-            height: 58,
+            left: 455,
+            top: 40,
+            width: 270,
+            height: 62,
             borderRadius: 999,
             background:
-              "radial-gradient(ellipse at center, rgba(255,107,61,0.075) 0%, rgba(255,107,61,0.030) 48%, transparent 82%)",
+              "radial-gradient(ellipse at center, rgba(255,107,61,0.045) 0%, rgba(255,107,61,0.018) 55%, transparent 86%)",
           }}
         />
 
@@ -130,7 +130,7 @@ export async function GET(request: Request) {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(circle at 50% 45%, rgba(255,107,61,0.035), transparent 42%)",
+              "radial-gradient(circle at 50% 45%, rgba(255,107,61,0.030), transparent 42%)",
           }}
         />
 
