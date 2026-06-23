@@ -7,7 +7,48 @@ const months = [
   "July", "August", "September", "October", "November", "December",
 ];
 
-const quote = "Когда тяжело — вспомни, ради кого ты стараешься.";
+const quotes = [
+  "Не жди идеального момента. Делай сейчас.",
+  "Сегодня важнее, чем кажется.",
+  "Тише, но точнее.",
+  "Держи курс.",
+  "Сделай день дорогим.",
+  "Не сливай темп.",
+  "Дисциплина сильнее настроения.",
+  "Ты ближе, чем думаешь.",
+  "Маленький шаг всё равно шаг.",
+  "Сначала порядок, потом скорость.",
+  "Не торопись. Ускоряйся правильно.",
+  "Сегодня не день для отката.",
+  "Соберись и сделай.",
+  "Ради себя. Ради семьи. Ради будущего.",
+  "Спокойно. Чётко. До результата.",
+  "Побеждает тот, кто не бросил.",
+  "Не обязательно идеально. Обязательно продолжать.",
+  "Сфокусируйся на главном.",
+  "Минус хаос. Плюс действие.",
+  "Твоя жизнь собирается из таких дней.",
+  "Деньги любят систему.",
+  "Результат любит повторение.",
+  "Держи план, даже если тяжело.",
+  "Сегодня ты строишь завтра.",
+  "Не ищи мотивацию. Создай движение.",
+  "Сначала сделать, потом оценивать.",
+  "Один хороший день меняет траекторию.",
+  "Не драматизируй. Действуй.",
+  "Сила — в стабильности.",
+  "Не распыляйся.",
+  "Сделай меньше, но лучше.",
+  "Устал — замедлись, но не остановись.",
+  "Каждый день — кирпич.",
+  "Не предавай свои цели.",
+  "Ты уже начал. Продолжай.",
+  "Фокус решает.",
+  "Без суеты. Без жалости. Вперёд.",
+  "Сегодня можно стать сильнее.",
+  "Не откладывай себя.",
+  "Собери день в кулак.",
+];
 
 function getMoscowDate() {
   return new Date(Date.now() + 3 * 60 * 60 * 1000);
@@ -41,6 +82,7 @@ export async function GET(request: Request) {
   const progress = Math.round((dayOfYear / totalDays) * 100);
   const monthDays = daysInMonth(year, currentMonth);
   const monthName = months[currentMonth].toUpperCase();
+  const quote = quotes[dayOfYear % quotes.length];
 
   return new ImageResponse(
     (
@@ -61,24 +103,26 @@ export async function GET(request: Request) {
         <div
           style={{
             position: "absolute",
-            left: 355,
-            top: 64,
-            width: 470,
-            height: 160,
+            left: 315,
+            top: 42,
+            width: 550,
+            height: 210,
             borderRadius: 999,
-            background: "rgba(255,107,61,0.16)",
+            background:
+              "radial-gradient(circle, rgba(255,107,61,0.20) 0%, rgba(255,107,61,0.09) 38%, rgba(255,107,61,0.03) 62%, transparent 78%)",
           }}
         />
 
         <div
           style={{
             position: "absolute",
-            left: 425,
-            top: 95,
-            width: 330,
-            height: 90,
+            left: 405,
+            top: 82,
+            width: 370,
+            height: 115,
             borderRadius: 999,
-            background: "rgba(255,107,61,0.10)",
+            background:
+              "radial-gradient(circle, rgba(255,107,61,0.14) 0%, rgba(255,107,61,0.06) 48%, transparent 76%)",
           }}
         />
 
@@ -87,11 +131,11 @@ export async function GET(request: Request) {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(circle at 50% 45%, rgba(255,107,61,0.06), transparent 38%)",
+              "radial-gradient(circle at 50% 45%, rgba(255,107,61,0.045), transparent 40%)",
           }}
         />
 
-        {Array.from({ length: 32 }).map((_, i) => (
+        {Array.from({ length: 28 }).map((_, i) => (
           <div
             key={i}
             style={{
@@ -102,7 +146,7 @@ export async function GET(request: Request) {
               height: i % 6 === 0 ? 4 : 3,
               borderRadius: 999,
               background: i % 4 === 0 ? "#ff6b3d" : "#ffffff",
-              opacity: i % 4 === 0 ? 0.34 : 0.18,
+              opacity: i % 4 === 0 ? 0.32 : 0.16,
             }}
           />
         ))}
