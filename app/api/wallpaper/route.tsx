@@ -62,22 +62,22 @@ export async function GET(request: Request) {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(circle at 50% 35%, rgba(255,107,61,0.16), transparent 34%), radial-gradient(circle at 50% 78%, rgba(255,255,255,0.06), transparent 28%)",
+              "radial-gradient(circle at 50% 34%, rgba(255,107,61,0.18), transparent 32%), radial-gradient(circle at 50% 78%, rgba(255,255,255,0.06), transparent 28%)",
           }}
         />
 
-        {Array.from({ length: 55 }).map((_, i) => (
+        {Array.from({ length: 70 }).map((_, i) => (
           <div
             key={i}
             style={{
               position: "absolute",
-              left: `${60 + ((i * 97) % 1040)}px`,
-              top: `${520 + ((i * 149) % 1420)}px`,
-              width: i % 5 === 0 ? 5 : 3,
-              height: i % 5 === 0 ? 5 : 3,
+              left: `${40 + ((i * 97) % 1100)}px`,
+              top: `${470 + ((i * 149) % 1580)}px`,
+              width: i % 6 === 0 ? 5 : 3,
+              height: i % 6 === 0 ? 5 : 3,
               borderRadius: 999,
               background: i % 4 === 0 ? "#ff6b3d" : "#ffffff",
-              opacity: i % 4 === 0 ? 0.45 : 0.22,
+              opacity: i % 4 === 0 ? 0.48 : 0.23,
             }}
           />
         ))}
@@ -85,7 +85,7 @@ export async function GET(request: Request) {
         <div
           style={{
             position: "absolute",
-            top: 640,
+            top: 650,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -138,8 +138,8 @@ export async function GET(request: Request) {
               if (day === currentDay) {
                 color = "#ff6b3d";
                 fontWeight = 800;
-                background = "rgba(255,107,61,0.12)";
-                border = "3px solid #ff6b3d";
+                background = "rgba(255,107,61,0.20)";
+                border = "4px solid #ff6b3d";
               }
 
               return (
@@ -157,6 +157,10 @@ export async function GET(request: Request) {
                     borderRadius: 999,
                     background,
                     border,
+                    boxShadow:
+                      day === currentDay
+                        ? "0 0 34px rgba(255,107,61,0.75)"
+                        : "none",
                   }}
                 >
                   {day}
@@ -171,7 +175,7 @@ export async function GET(request: Request) {
             position: "absolute",
             top: 1510,
             width: 850,
-            height: 16,
+            height: 12,
             borderRadius: 999,
             background: "#2b2b2b",
             display: "flex",
@@ -184,6 +188,7 @@ export async function GET(request: Request) {
               height: "100%",
               background: "#ff6b3d",
               borderRadius: 999,
+              boxShadow: "0 0 28px rgba(255,107,61,0.75)",
             }}
           />
         </div>
@@ -191,11 +196,12 @@ export async function GET(request: Request) {
         <div
           style={{
             position: "absolute",
-            top: 1570,
+            top: 1565,
             color: "#ff6b3d",
             fontSize: 44,
             fontWeight: 700,
             display: "flex",
+            textShadow: "0 0 20px rgba(255,107,61,0.45)",
           }}
         >
           {daysLeft} days left · {progress}%
@@ -204,7 +210,7 @@ export async function GET(request: Request) {
         <div
           style={{
             position: "absolute",
-            top: 1665,
+            top: 1655,
             width: 860,
             textAlign: "center",
             color: "#d8d8d8",
@@ -215,18 +221,6 @@ export async function GET(request: Request) {
           }}
         >
           “{quote}”
-        </div>
-
-        <div
-          style={{
-            position: "absolute",
-            top: 1820,
-            color: "#5a5a5a",
-            fontSize: 26,
-            display: "flex",
-          }}
-        >
-          daily wallpaper · generated automatically
         </div>
       </div>
     ),
