@@ -48,7 +48,7 @@ export async function GET(request: Request) {
         style={{
           width,
           height,
-          background: "#090909",
+          background: "#0b0b0b",
           color: "#ffffff",
           display: "flex",
           flexDirection: "column",
@@ -61,39 +61,24 @@ export async function GET(request: Request) {
         <div
           style={{
             position: "absolute",
-            left: 360,
-            top: 70,
-            width: 460,
-            height: 170,
+            left: 355,
+            top: 64,
+            width: 470,
+            height: 160,
             borderRadius: 999,
-            background:
-              "radial-gradient(circle, rgba(255,107,61,0.28) 0%, rgba(255,107,61,0.12) 35%, transparent 72%)",
+            background: "rgba(255,107,61,0.16)",
           }}
         />
 
         <div
           style={{
             position: "absolute",
-            left: 155,
-            top: 1900,
-            width: 190,
-            height: 190,
+            left: 425,
+            top: 95,
+            width: 330,
+            height: 90,
             borderRadius: 999,
-            background:
-              "radial-gradient(circle, rgba(255,107,61,0.32) 0%, rgba(255,107,61,0.12) 42%, transparent 74%)",
-          }}
-        />
-
-        <div
-          style={{
-            position: "absolute",
-            right: 155,
-            top: 1900,
-            width: 190,
-            height: 190,
-            borderRadius: 999,
-            background:
-              "radial-gradient(circle, rgba(255,107,61,0.32) 0%, rgba(255,107,61,0.12) 42%, transparent 74%)",
+            background: "rgba(255,107,61,0.10)",
           }}
         />
 
@@ -102,40 +87,22 @@ export async function GET(request: Request) {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(circle at 50% 34%, rgba(255,107,61,0.16), transparent 32%), radial-gradient(circle at 50% 76%, rgba(255,255,255,0.05), transparent 28%)",
+              "radial-gradient(circle at 50% 45%, rgba(255,107,61,0.06), transparent 38%)",
           }}
         />
 
-        <div
-          style={{
-            position: "absolute",
-            left: 165,
-            top: 510,
-            width: 850,
-            height: 850,
-            borderRadius: 999,
-            border: "2px solid rgba(255,107,61,0.08)",
-            boxShadow:
-              "0 0 80px rgba(255,107,61,0.12), inset 0 0 70px rgba(255,107,61,0.05)",
-          }}
-        />
-
-        {Array.from({ length: 90 }).map((_, i) => (
+        {Array.from({ length: 32 }).map((_, i) => (
           <div
             key={i}
             style={{
               position: "absolute",
-              left: `${30 + ((i * 97) % 1120)}px`,
-              top: `${360 + ((i * 149) % 1700)}px`,
-              width: i % 8 === 0 ? 5 : 3,
-              height: i % 8 === 0 ? 5 : 3,
+              left: `${50 + ((i * 97) % 1080)}px`,
+              top: `${430 + ((i * 149) % 1500)}px`,
+              width: i % 6 === 0 ? 4 : 3,
+              height: i % 6 === 0 ? 4 : 3,
               borderRadius: 999,
               background: i % 4 === 0 ? "#ff6b3d" : "#ffffff",
-              opacity: i % 4 === 0 ? 0.5 : 0.22,
-              boxShadow:
-                i % 4 === 0
-                  ? "0 0 12px rgba(255,107,61,0.55)"
-                  : "0 0 8px rgba(255,255,255,0.20)",
+              opacity: i % 4 === 0 ? 0.34 : 0.18,
             }}
           />
         ))}
@@ -157,8 +124,6 @@ export async function GET(request: Request) {
               letterSpacing: 8,
               marginBottom: 24,
               display: "flex",
-              textShadow:
-                "0 0 10px rgba(255,107,61,0.85), 0 0 26px rgba(255,107,61,0.55), 0 0 60px rgba(255,107,61,0.32)",
             }}
           >
             {monthName}
@@ -190,7 +155,6 @@ export async function GET(request: Request) {
               let fontWeight = 500;
               let background = "transparent";
               let border = "0px solid transparent";
-              let shadow = "none";
 
               if (day < currentDay) {
                 color = "#ffffff";
@@ -199,10 +163,8 @@ export async function GET(request: Request) {
               if (day === currentDay) {
                 color = "#ff6b3d";
                 fontWeight = 800;
-                background = "rgba(255,107,61,0.20)";
+                background = "rgba(255,107,61,0.22)";
                 border = "4px solid #ff6b3d";
-                shadow =
-                  "0 0 24px rgba(255,107,61,0.9), 0 0 54px rgba(255,107,61,0.55)";
               }
 
               return (
@@ -220,7 +182,6 @@ export async function GET(request: Request) {
                     borderRadius: 999,
                     background,
                     border,
-                    boxShadow: shadow,
                   }}
                 >
                   {day}
@@ -240,7 +201,6 @@ export async function GET(request: Request) {
             background: "#2b2b2b",
             display: "flex",
             overflow: "hidden",
-            boxShadow: "0 0 22px rgba(255,107,61,0.18)",
           }}
         >
           <div
@@ -249,8 +209,6 @@ export async function GET(request: Request) {
               height: "100%",
               background: "#ff6b3d",
               borderRadius: 999,
-              boxShadow:
-                "0 0 18px rgba(255,107,61,0.9), 0 0 38px rgba(255,107,61,0.55)",
             }}
           />
         </div>
@@ -263,8 +221,6 @@ export async function GET(request: Request) {
             fontSize: 44,
             fontWeight: 700,
             display: "flex",
-            textShadow:
-              "0 0 14px rgba(255,107,61,0.65), 0 0 32px rgba(255,107,61,0.35)",
           }}
         >
           {daysLeft} days left · {progress}%
