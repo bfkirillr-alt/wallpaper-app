@@ -39,76 +39,7 @@ export async function GET(request: Request) {
 
   const daysLeft = totalDays - dayOfYear;
   const progress = Math.round((dayOfYear / totalDays) * 100);
-
-  let weatherText = "St. Petersburg";
-
-  try {
-    const res = await fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=59.9386&longitude=30.3141&current=temperature_2m,apparent_temperature&timezone=Europe%2FMoscow",
-      { cache: "no-store" }
-    );
-
-    const data = await res.json();
-    const temp = Math.round(data.current.temperature_2m);
-    const feels = Math.round(data.current.apparent_temperature);
-
-    weatherText = `St. Petersburg · ${temp}° · feels like ${feels}°`;
-  } catch {
-    weatherText = "St. Petersburg · weather unavailable";
-  }
-
-  const renderMiniMonth = (monthIndex: number) => {
-    const amount = daysInMonth(year, monthIndex);
-    const isPast = monthIndex < currentMonth;
-
-    return (
-      <div
-        key={`mini-${monthIndex}`}
-        style={{
-          width: 285,
-          height: 150,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          marginLeft: 16,
-          marginRight: 16,
-          marginBottom: 26,
-        }}
-      >
-        <div
-          style={{
-            color: "#b8b8b8",
-            fontSize: 30,
-            marginBottom: 18,
-            display: "flex",
-          }}
-        >
-          {months[monthIndex]}
-        </div>
-
-        <div
-          style={{
-            width: 205,
-            display: "flex",
-            flexWrap: "wrap",
-          }}
-        >
-          {Array.from({ length: amount }).map((_, index) => (
-            <div
-              key={`dot-${monthIndex}-${index}`}
-              style={{
-                width: 14,
-                height: 14,
-                borderRadius: 999,
-                background: isPast ? "#ffffff" : "#4d4d4d",
-                margin: 5,
-              }}
-            />
-          ))}
-        </div>
-      </div>
-    );
-  };
+  const monthDays = daysInMonth(year, currentMonth);
 
   return new ImageResponse(
     (
@@ -116,58 +47,72 @@ export async function GET(request: Request) {
         style={{
           width,
           height,
-          background: "#111111",
+          background: "#0b0b0b",
           color: "#ffffff",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           fontFamily: "Arial",
-          paddingTop: 430,
+          position: "relative",
+          overflow: "hidden",
         }}
       >
         <div
           style={{
-            fontSize: 46,
-            marginBottom: 90,
-            display: "flex",
-            color: "#ffffff",
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(circle at 50% 35%, rgba(255,107,61,0.16), transparent 34%), radial-gradient(circle at 50% 78%, rgba(255,255,255,0.06), transparent 28%)",
           }}
-        >
-          {weatherText}
-        </div>
+        />
+
+        {Array.from({ length: 55 }).map((_, i) => (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: `${60 + ((i * 97) % 1040)}px`,
+              top: `${520 + ((i * 149) % 1420)}px`,
+              width: i % 5 === 0 ? 5 : 3,
+              height: i % 5 === 0 ? 5 : 3,
+              borderRadius: 999,
+              background: i % 4 === 0 ? "#ff6b3d" : "#ffffff",
+              opacity: i % 4 === 0 ? 0.45 : 0.22,
+            }}
+          />
+        ))}
 
         <div
           style={{
-            width: 1040,
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            marginBottom: 70,
-          }}
-        >
-          {months.slice(0, currentMonth).map((_, index) =>
-            renderMiniMonth(index)
-          )}
-        </div>
-
-        <div
-          style={{
+            position: "absolute",
+            top: 640,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            marginBottom: 80,
           }}
         >
           <div
             style={{
               color: "#ff6b3d",
-              fontSize: 76,
+              fontSize: 92,
               fontWeight: 700,
-              marginBottom: 55,
+              letterSpacing: 8,
+              marginBottom: 24,
               display: "flex",
             }}
           >
             {months[currentMonth].toUpperCase()}
+          </div>
+
+          <div
+            style={{
+              color: "#bdbdbd",
+              fontSize: 34,
+              marginBottom: 70,
+              display: "flex",
+            }}
+          >
+            {year}
           </div>
 
           <div
@@ -178,64 +123,78 @@ export async function GET(request: Request) {
               justifyContent: "center",
             }}
           >
-            {Array.from({ length: daysInMonth(year, currentMonth) }).map(
-              (_, index) => {
-                const day = index + 1;
+            {Array.from({ length: monthDays }).map((_, index) => {
+              const day = index + 1;
 
-                let color = "#555555";
-                let fontWeight = 500;
+              let color = "#4b4b4b";
+              let fontWeight = 500;
+              let background = "transparent";
+              let border = "0px solid transparent";
 
-                if (day < currentDay) {
-                  color = "#ffffff";
-                }
-
-                if (day === currentDay) {
-                  color = "#ff6b3d";
-                  fontWeight = 800;
-                }
-
-                return (
-                  <div
-                    key={`day-${day}`}
-                    style={{
-                      width: 100,
-                      height: 78,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color,
-                      fontSize: 58,
-                      fontWeight,
-                    }}
-                  >
-                    {day}
-                  </div>
-                );
+              if (day < currentDay) {
+                color = "#ffffff";
               }
-            )}
+
+              if (day === currentDay) {
+                color = "#ff6b3d";
+                fontWeight = 800;
+                background = "rgba(255,107,61,0.12)";
+                border = "3px solid #ff6b3d";
+              }
+
+              return (
+                <div
+                  key={day}
+                  style={{
+                    width: 108,
+                    height: 92,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color,
+                    fontSize: 58,
+                    fontWeight,
+                    borderRadius: 999,
+                    background,
+                    border,
+                  }}
+                >
+                  {day}
+                </div>
+              );
+            })}
           </div>
         </div>
 
         <div
           style={{
-            width: 1040,
+            position: "absolute",
+            top: 1510,
+            width: 850,
+            height: 16,
+            borderRadius: 999,
+            background: "#2b2b2b",
             display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            marginBottom: 70,
+            overflow: "hidden",
           }}
         >
-          {months.slice(currentMonth + 1).map((_, index) =>
-            renderMiniMonth(currentMonth + 1 + index)
-          )}
+          <div
+            style={{
+              width: `${progress}%`,
+              height: "100%",
+              background: "#ff6b3d",
+              borderRadius: 999,
+            }}
+          />
         </div>
 
         <div
           style={{
+            position: "absolute",
+            top: 1570,
             color: "#ff6b3d",
-            fontSize: 46,
+            fontSize: 44,
             fontWeight: 700,
-            marginBottom: 55,
             display: "flex",
           }}
         >
@@ -244,16 +203,30 @@ export async function GET(request: Request) {
 
         <div
           style={{
-            width: 920,
+            position: "absolute",
+            top: 1665,
+            width: 860,
             textAlign: "center",
             color: "#d8d8d8",
-            fontSize: 36,
+            fontSize: 34,
             lineHeight: 1.35,
             display: "flex",
             justifyContent: "center",
           }}
         >
           “{quote}”
+        </div>
+
+        <div
+          style={{
+            position: "absolute",
+            top: 1820,
+            color: "#5a5a5a",
+            fontSize: 26,
+            display: "flex",
+          }}
+        >
+          daily wallpaper · generated automatically
         </div>
       </div>
     ),
