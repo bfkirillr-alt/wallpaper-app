@@ -18,7 +18,6 @@ const quotes = [
   "Ты ближе, чем думаешь.",
   "Маленький шаг всё равно шаг.",
   "Сначала порядок, потом скорость.",
-  "Не торопись. Ускоряйся правильно.",
   "Сегодня не день для отката.",
   "Соберись и сделай.",
   "Ради себя. Ради семьи. Ради будущего.",
@@ -103,26 +102,26 @@ export async function GET(request: Request) {
         <div
           style={{
             position: "absolute",
-            left: 315,
-            top: 42,
-            width: 550,
-            height: 210,
+            left: 330,
+            top: 118,
+            width: 520,
+            height: 105,
             borderRadius: 999,
             background:
-              "radial-gradient(circle, rgba(255,107,61,0.20) 0%, rgba(255,107,61,0.09) 38%, rgba(255,107,61,0.03) 62%, transparent 78%)",
+              "radial-gradient(ellipse at center, rgba(255,107,61,0.10) 0%, rgba(255,107,61,0.055) 38%, rgba(255,107,61,0.018) 66%, transparent 86%)",
           }}
         />
 
         <div
           style={{
             position: "absolute",
-            left: 405,
-            top: 82,
-            width: 370,
-            height: 115,
+            left: 410,
+            top: 134,
+            width: 360,
+            height: 58,
             borderRadius: 999,
             background:
-              "radial-gradient(circle, rgba(255,107,61,0.14) 0%, rgba(255,107,61,0.06) 48%, transparent 76%)",
+              "radial-gradient(ellipse at center, rgba(255,107,61,0.075) 0%, rgba(255,107,61,0.030) 48%, transparent 82%)",
           }}
         />
 
@@ -131,11 +130,11 @@ export async function GET(request: Request) {
             position: "absolute",
             inset: 0,
             background:
-              "radial-gradient(circle at 50% 45%, rgba(255,107,61,0.045), transparent 40%)",
+              "radial-gradient(circle at 50% 45%, rgba(255,107,61,0.035), transparent 42%)",
           }}
         />
 
-        {Array.from({ length: 28 }).map((_, i) => (
+        {Array.from({ length: 24 }).map((_, i) => (
           <div
             key={i}
             style={{
@@ -146,7 +145,7 @@ export async function GET(request: Request) {
               height: i % 6 === 0 ? 4 : 3,
               borderRadius: 999,
               background: i % 4 === 0 ? "#ff6b3d" : "#ffffff",
-              opacity: i % 4 === 0 ? 0.32 : 0.16,
+              opacity: i % 4 === 0 ? 0.28 : 0.13,
             }}
           />
         ))}
